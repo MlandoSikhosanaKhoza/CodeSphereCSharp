@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>@ViewData["Title"] - UI</title>
+    @RenderSection("css", required: false)
+</head>
+<body>
+    @RenderBody()
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $("input").attr("autocomplete", "off");
+        });
+    </script>
+</body>
+</html>
