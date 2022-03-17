@@ -22,7 +22,7 @@ namespace UI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            //dependancyLogic = new DependancyLogic(configuration);
+            dependancyLogic = new DependancyLogic(configuration);
         }
 
         public IConfiguration Configuration { get; }
@@ -31,7 +31,8 @@ namespace UI
         public void ConfigureServices(IServiceCollection services)
         {
             dependancyLogic.InjectionServices(services);
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddAutoMapper(typeof(AddressProfile));
             services.AddControllersWithViews();
             services.AddMvc().AddRazorRuntimeCompilation();
