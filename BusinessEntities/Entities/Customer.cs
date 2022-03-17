@@ -14,7 +14,7 @@ namespace BusinessEntities
         [StringLength(40)]
         public string Surname { get; set; }
         [StringLength(11)]
-        public string Number { get; set; }
+        public string Mobile { get; set; }
 
         public ICollection<Order> Orders { get; set; }
     }
