@@ -5,8 +5,6 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 namespace BusinessLogic
 {
     
@@ -19,7 +17,9 @@ namespace BusinessLogic
 
         }
         public void InjectionServices(IServiceCollection services) {
+            services.AddScoped<IEmployeeLogic, EmployeeLogic>();
             services.AddScoped<ICustomerLogic, CustomerLogic>();
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
     }
