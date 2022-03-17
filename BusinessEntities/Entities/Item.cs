@@ -9,6 +9,8 @@ namespace BusinessEntities
     {
         [Key]
         public int ItemId { get; set; }
+        [StringLength(300)]
+        public string ImageName { get; set; }
         [StringLength(40)]
         public string Description { get; set; }
         public decimal Price { get; set; }
