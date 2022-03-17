@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace UI.Models
 {
-    public class AddressProfile:Profile
-    {
-        public AddressProfile()
-        {
-            CreateMap<Address, AddressModel>();
-            CreateMap<AddressModel,Address>();
-        }
-    }
+    //public class AddressProfile:Profile
+    //{
+    //    public AddressProfile()
+    //    {
+    //        CreateMap<Address, AddressModel>();
+    //        CreateMap<AddressModel,Address>();
+    //    }
+    //}
 }
