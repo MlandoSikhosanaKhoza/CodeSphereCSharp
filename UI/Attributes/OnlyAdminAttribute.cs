@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,14 @@ namespace UI.Attributes
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             string admin = filterContext.HttpContext.Request.Cookies["admin"];
+            if (!string.IsNullOrEmpty(admin))
+            {
+                
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult("/Home/Unauthorized");
+            }
         }
     }
 }
