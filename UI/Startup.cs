@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UI.Models;
+using UI.Models.Profiles;
 
 namespace UI
 {
@@ -33,6 +34,7 @@ namespace UI
             dependancyLogic.InjectionServices(services);
             services.AddDbContext<ApplicationDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAutoMapper(typeof(CustomerProfiler));
             services.AddControllersWithViews();
             services.AddMvc().AddRazorRuntimeCompilation();
         }
