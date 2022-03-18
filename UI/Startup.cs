@@ -33,7 +33,6 @@ namespace UI
             dependancyLogic.InjectionServices(services);
             services.AddDbContext<ApplicationDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddAutoMapper(typeof(AddressProfile));
             services.AddControllersWithViews();
             services.AddMvc().AddRazorRuntimeCompilation();
         }

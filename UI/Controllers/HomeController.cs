@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using UI.Models;
 
@@ -14,12 +15,12 @@ namespace UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public IMapper Mapper { get; set; }
+        //public IMapper Mapper { get; set; }
 
-        public HomeController(ILogger<HomeController> logger,IMapper mapper)
+        public HomeController(ILogger<HomeController> logger/*IMapper mapper*/)
         {
             _logger = logger;
-            Mapper = mapper;
+            //Mapper = mapper;
         }
 
         public IActionResult Index()
@@ -29,6 +30,12 @@ namespace UI.Controllers
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+        public IActionResult Unauthorized()
+        {
+            Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            ViewBag.Status = (int)HttpStatusCode.Unauthorized;
             return View();
         }
 

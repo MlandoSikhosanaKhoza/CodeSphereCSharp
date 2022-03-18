@@ -27,6 +27,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Profiles\" />
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
