@@ -56,5 +56,11 @@ namespace BusinessLogic
         {
             return CustomerRepository.GetById(CustomerId);
         }
+
+        public Customer GetCustomerByMobileNumber(string MobileNumber)
+        {
+            Customer customer = CustomerRepository.All().Where(c => c.Mobile.Equals(MobileNumber)).First();
+            return customer;
+        }
     }
 }

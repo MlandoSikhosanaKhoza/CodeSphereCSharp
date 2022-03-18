@@ -10,6 +10,7 @@ namespace BusinessLogic
         List<Customer> GetAllCustomers();
         void AddCustomer(Customer Customer);
         Customer GetCustomer(int CustomerId);
+        Customer GetCustomerByMobileNumber(string MobileNumber);
         bool UpdateCustomer(Customer Customer);
         bool DeleteCustomer(int CustomerId);
         List<Customer> SearchForCustomers(string Search);

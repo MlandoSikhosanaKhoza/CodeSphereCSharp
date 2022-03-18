@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessEntities;
+using BusinessLogic;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,11 @@ namespace UI.Attributes
     {
         public class OnlyUsersAttribute : ActionFilterAttribute
         {
+            private ICustomerLogic _customerLogic { get; set; }
+            public OnlyUsersAttribute(ICustomerLogic customerLogic)
+            {
+                _customerLogic = customerLogic;
+            }
             /// <summary>
             /// Verify if its a user or admin (Obviously not the way to authorize but its quick)
             /// </summary>
@@ -22,13 +29,14 @@ namespace UI.Attributes
                 {
                     switch (user)
                     {
-                        case "user":
+                        case "new-customer":
                             //user has not entered a cellphone number yet
 
                             break;
                         default:
                             //user has entered a cellphone number
-
+                            Customer customer = _customerLogic.GetCustomerByMobileNumber(user);
+                            filterContext.HttpContext.Items.Add("Customer", customer);
                             break;
                     }
                 }
