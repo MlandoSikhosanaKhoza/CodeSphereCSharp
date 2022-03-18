@@ -59,7 +59,7 @@ namespace BusinessLogic
 
         public Customer GetCustomerByMobileNumber(string MobileNumber)
         {
-            Customer customer = CustomerRepository.All().Where(c => c.Mobile.Equals(MobileNumber)).First();
+            Customer customer = CustomerRepository.All().Where(c => c.Mobile.Equals(MobileNumber)).FirstOrDefault();
             return customer;
         }
     }
