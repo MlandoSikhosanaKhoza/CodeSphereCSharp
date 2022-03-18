@@ -1,5 +1,6 @@
 ﻿using BusinessEntities;
 using BusinessLogic;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -13,11 +14,8 @@ namespace UI.Attributes
     {
         public class OnlyUsersAttribute : ActionFilterAttribute
         {
-            private ICustomerLogic _customerLogic { get; set; }
-            public OnlyUsersAttribute(ICustomerLogic customerLogic)
-            {
-                _customerLogic = customerLogic;
-            }
+            [Inject]
+            ICustomerLogic customerLogic { get; set; }
             /// <summary>
             /// Verify if its a user or admin (Obviously not the way to authorize but its quick)
             /// </summary>
@@ -27,18 +25,6 @@ namespace UI.Attributes
                 string user = filterContext.HttpContext.Request.Cookies["user"];
                 if (!string.IsNullOrEmpty(user))
                 {
-                    switch (user)
-                    {
-                        case "new-customer":
-                            //user has not entered a cellphone number yet
-
-                            break;
-                        default:
-                            //user has entered a cellphone number
-                            Customer customer = _customerLogic.GetCustomerByMobileNumber(user);
-                            filterContext.HttpContext.Items.Add("Customer", customer);
-                            break;
-                    }
                 }
                 else
                 {

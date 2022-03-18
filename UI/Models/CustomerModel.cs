@@ -20,8 +20,5 @@ namespace UI.Models
         [MaxLength(11)]
         [RegularExpression("^[0-9]*$",ErrorMessage ="Only numbers allowed")]
         public string Mobile { get; set; }
-
-        public Order Order { get; set; }
-        public List<OrderItem> OrderItems { get; set; }
     }
 }

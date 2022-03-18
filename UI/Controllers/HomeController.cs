@@ -15,17 +15,27 @@ namespace UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        //public IMapper Mapper { get; set; }
+        public IMapper Mapper { get; set; }
 
-        public HomeController(ILogger<HomeController> logger/*IMapper mapper*/)
+        public HomeController(ILogger<HomeController> logger, IMapper mapper)
         {
             _logger = logger;
-            //Mapper = mapper;
+            Mapper = mapper;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult LoginAsUser()
+        {
+            string user = Request.Cookies["user"];
+            if (string.IsNullOrEmpty(user))
+            {
+                Response.Cookies.Append("user", "new-customer");
+            }
+            return RedirectToAction("Index", "Customer");
         }
 
         public IActionResult Privacy()
