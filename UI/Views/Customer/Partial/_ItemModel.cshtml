@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<BusinessEntities.Item>
 
-<table class="table">
+<table id="item-table" class="table">
     <thead>
         <tr>
             <th>
@@ -19,7 +19,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
+                <img src="~/image/item-image/@item.ImageName?random=@Guid.NewGuid().ToString()" style="max-width: 120px;max-height: 120px;" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
+                <button type="button" class="btn-primary btn" onclick="MakeAnOrder.Buy()" data-item-id="@item.ItemId" data-price="@item.Price" data-desc="@item.Description">Buy</button>
             </td>
         </tr>
 }

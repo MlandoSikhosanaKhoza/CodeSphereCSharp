@@ -19,9 +19,16 @@
     <link href="~/css/profile/boxicons/css/boxicons.min.css" rel="stylesheet" />
     <link href="~/css/profile/glightbox/glightbox.min.css" rel="stylesheet" />
     <link href="~/css/profile/swiper/swiper-bundle.min.css" rel="stylesheet" />
-
+    <link href="~/css/profile/datatables/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <!-- Template Main CSS File -->
     <link href="~/css/profile/style.css" rel="stylesheet" />
+    <style>
+        #main {
+            background: url('/image/front/hero-bg.jpg') center;
+            padding: 16px;
+            min-height: 100vh;
+        }
+    </style>
     @RenderSection("css", required: false)
 }
 <!-- ======= Mobile nav toggle button ======= -->
@@ -55,8 +62,9 @@
         </nav><!-- .nav-menu -->
     </div>
 </header><!-- End Header -->
-@RenderBody()
-
+<main id="main">
+    @RenderBody()
+</main>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 @section Scripts{
     <!-- Vendor JS Files -->
@@ -68,7 +76,8 @@
     <script src="~/js/profile/swiper/swiper-bundle.min.js"></script>
     <script src="~/js/profile/typed.js/typed.min.js"></script>
     <script src="~/js/profile/waypoints/noframework.waypoints.js"></script>
-
+    <script src="~/js/profile/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/js/profile/datatables/dataTables.bootstrap5.min.js"></script>
     <!-- Template Main JS File -->
     <script src="~/js/profile/main.js"></script>
     @RenderSection("scripts", required: false)

@@ -13,6 +13,9 @@ namespace UI.Models
         [MaxLength(40)]
         [Display(Name ="Item name")]
         public string Description { get; set; }
+        [StringLength(300)]
+        public string ImageName { get; set; }
+        public string Base64 { get; set; }
         [Required]
         [Display(Name = "Price without VAT")]
         public decimal Price { get; set; }
