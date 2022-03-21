@@ -1,8 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model UI.Models.CustomerLoginModel
+@{
+    ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_FrontLayout.cshtml";
 }
-<!-- ======= Header ======= -->
 <header id="header">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
@@ -13,22 +13,30 @@
         </div>
 
         @*<div class="contact-link float-right">
-            <a href="#contact" class="scrollto">Contact Us</a>
-        </div>*@
+                <a href="#contact" class="scrollto">Contact Us</a>
+            </div>*@
 
     </div>
-</header><!-- End #header -->
-<!-- ======= Hero Section ======= -->
+</header>
 <section id="hero">
     <div class="hero-container">
         <h1>Good-For-Moo</h1>
         <h2>Moo-Hoo for you too</h2>
-        <div class="countdown" data-count="2023/12/3" data-template="%d days %h:%m:%s"></div>
-
-            <div class="text-center">
-                <a asp-action="Login" class="btn btn-primary">Login as User</a>
-                <a asp-action="LoginAsAdmin" class="btn btn-primary">Login as Admin</a>
+        <div class="countdown d-none" data-count="2023/12/3" data-template="%d days %h:%m:%s"></div>
+        <form asp-action="Login">
+            <h3 class=" text-white">Login</h3>
+            <div class="form-group col-md-12">
+                <label asp-for="Mobile" class="control-label text-white"></label>
+                <input asp-for="Mobile" class="form-control customer-input col-sm-12" />
+                <span asp-validation-for="Mobile" class="text-danger bg-white"></span>
             </div>
+            <button class="btn btn-primary mt-3">Login</button>
+        </form>
+        <div class="text-center mt-3">
+            <a asp-action="Index" class="btn btn-dark">Back to Home</a>
+            <a asp-action="SignUp" class="btn btn-secondary">Sign Up</a>
+            <a asp-action="LoginAsUser" class="btn btn-secondary">Continue without Login</a>
+        </div>
     </div>
 </section>
 <footer id="footer">

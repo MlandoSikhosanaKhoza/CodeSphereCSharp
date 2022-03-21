@@ -3,6 +3,7 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace BusinessLogic
 {
@@ -18,7 +19,7 @@ namespace BusinessLogic
 
         public List<Employee> GetAllEmployees()
         {
-            return (List<Employee>)EmployeeRepository.All();
+            return EmployeeRepository.All().Where(e => !e.IsDeleted).ToList();
         }
 
         public void AddEmployee(Employee Employee)
@@ -41,7 +42,9 @@ namespace BusinessLogic
 
         public bool DeleteEmployee(int EmployeeId)
         {
-            EmployeeRepository.Delete(EmployeeId);
+            Employee employee = GetEmployee(EmployeeId);
+            employee.IsDeleted = true;
+            UpdateEmployee(employee);
             _unitOfWork.CompleteAsync();
             return true;
         }

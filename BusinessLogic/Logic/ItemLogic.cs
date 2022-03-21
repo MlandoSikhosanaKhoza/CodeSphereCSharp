@@ -3,6 +3,7 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace BusinessLogic
 {
@@ -18,7 +19,7 @@ namespace BusinessLogic
 
         public List<Item> GetAllItems()
         {
-            return (List<Item>)ItemRepository.All();
+            return ItemRepository.All().Where(e => !e.IsDeleted).ToList();
         }
 
         public void AddItem(Item Item)
@@ -41,7 +42,9 @@ namespace BusinessLogic
 
         public bool DeleteItem(int ItemId)
         {
-            ItemRepository.Delete(ItemId);
+            Item item = GetItem(ItemId);
+            item.IsDeleted = true;
+            UpdateItem(item);
             _unitOfWork.CompleteAsync();
             return true;
         }

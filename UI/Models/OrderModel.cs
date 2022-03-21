@@ -21,6 +21,7 @@ namespace UI.Models
         public decimal GrandTotal { get; set; }
 
         public List<Item> Items { get; set; }
+        public List<OrderItemsViewModel> OrderItemsView { get; set; }
     }
     public class OrderItemsViewModel:OrderItem
     {

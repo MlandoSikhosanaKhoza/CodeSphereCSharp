@@ -1,4 +1,5 @@
 ﻿using BusinessEntities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +20,12 @@ namespace UI.Models
         [Required]
         [MaxLength(11)]
         [RegularExpression("^[0-9]*$",ErrorMessage ="Only numbers allowed")]
+        [Remote("CheckIfMobileExist", "Customer", ErrorMessage = "Mobile number already exists",AdditionalFields = "CustomerId")]
         public string Mobile { get; set; }
+    }
+    public class CustomerHistoryModel : CustomerModel
+    {
+        public List<Order> OngoingOrders { get; set; }
+        public List<Order> CompleteOrders { get; set; }
     }
 }

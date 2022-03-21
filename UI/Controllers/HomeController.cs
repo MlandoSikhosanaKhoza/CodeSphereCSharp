@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessEntities;
+using BusinessLogic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,15 +16,27 @@ namespace UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private ICustomerLogic _customerLogic { get; set; }
         public IMapper Mapper { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, IMapper mapper)
+        public HomeController(ICustomerLogic customerLogic, ILogger<HomeController> logger, IMapper mapper)
         {
             _logger = logger;
             Mapper = mapper;
+            _customerLogic = customerLogic;
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult SignUp()
         {
             return View();
         }
@@ -36,6 +49,32 @@ namespace UI.Controllers
                 Response.Cookies.Append("user", "new-customer");
             }
             return RedirectToAction("Index", "Customer");
+        }
+
+        [HttpPost]
+        public IActionResult Login(CustomerLoginModel CustomerLoginModel)
+        {
+            Customer customer = _customerLogic.GetCustomerByMobileNumber(CustomerLoginModel.Mobile);
+            Response.Cookies.Append("user", customer.Mobile);
+            return RedirectToAction("LoginAsUser");
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(CustomerModel CustomerModel)
+        {
+            Customer customer = _customerLogic.AddCustomer(Mapper.Map<Customer>(CustomerModel));
+            Response.Cookies.Append("user", customer.Mobile);
+            return RedirectToAction("LoginAsUser");
+        }
+
+        public IActionResult LoginAsAdmin()
+        {
+            string user = Request.Cookies["admin"];
+            if (string.IsNullOrEmpty(user))
+            {
+                Response.Cookies.Append("admin", "temporary");
+            }
+            return RedirectToAction("Index", "Item");
         }
 
         public IActionResult Privacy()

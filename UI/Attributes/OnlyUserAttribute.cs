@@ -14,8 +14,6 @@ namespace UI.Attributes
     {
         public class OnlyUsersAttribute : ActionFilterAttribute
         {
-            [Inject]
-            ICustomerLogic customerLogic { get; set; }
             /// <summary>
             /// Verify if its a user or admin (Obviously not the way to authorize but its quick)
             /// </summary>

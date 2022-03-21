@@ -112,6 +112,11 @@ namespace UI.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("admin");
+            return RedirectToAction("Index", "Home");
+        }
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

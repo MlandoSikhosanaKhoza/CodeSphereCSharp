@@ -14,6 +14,7 @@ namespace BusinessEntities
         [StringLength(40)]
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public bool IsDeleted { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

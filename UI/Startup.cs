@@ -36,6 +36,7 @@ namespace UI
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(CustomerProfiler));
             services.AddAutoMapper(typeof(ItemProfiler));
+            services.AddAutoMapper(typeof(OrderProfiler));
             services.AddControllersWithViews();
             services.AddMvc().AddRazorRuntimeCompilation();
         }

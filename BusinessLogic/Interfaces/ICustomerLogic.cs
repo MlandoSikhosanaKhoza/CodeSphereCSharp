@@ -8,7 +8,8 @@ namespace BusinessLogic
     public interface ICustomerLogic
     {
         List<Customer> GetAllCustomers();
-        void AddCustomer(Customer Customer);
+        Customer AddCustomer(Customer Customer);
+        Customer ConfigureCustomer(Customer Customer);
         Customer GetCustomer(int CustomerId);
         Customer GetCustomerByMobileNumber(string MobileNumber);
         bool UpdateCustomer(Customer Customer);
